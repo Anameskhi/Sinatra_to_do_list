@@ -94,13 +94,14 @@ end
   private
 
   def validate_user_registration_input(params)
-    error_messages = []
+   error_messages = []
    error_messages.push("name length isn't  above 2 charachter") unless params['name'].to_s.length > 2
    error_messages.push("email isn't validate") unless params['email'] =~ EMAIL_REGEX
    error_messages.push("password length isn't above 8 charachter")  unless params['password'].to_s.length >= 8 
    error_messages.push("password is not equal confirm password") unless (params['password'] == params['password_confirm'])
    error_messages.push("Email has already been taken") if User.find_by(email: params['email'])
-    error_messages
+    
+   error_messages
   end
 
   def validate_user_signin(params)

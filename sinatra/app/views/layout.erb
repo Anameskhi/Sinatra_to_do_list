@@ -19,7 +19,7 @@
       <ul class="navbar-nav">
       <% if logged_in? %>
         <li class="nav-item">
-          <a class="nav-link" href="<%=url('/users/edit')%>">Edit Profile</a>
+          <a class="nav-link" href="<%=url('/users/edit')%>">Hello,<%=current_user['name'].capitalize%></a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<%=url('/users/signout')%>">Log Out</a>
