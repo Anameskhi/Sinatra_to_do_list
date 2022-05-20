@@ -3,7 +3,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="<%=url('/users/signin')%>">TO DO LIST</a>
+    <a class="navbar-brand" href="<%=url('/todos/show')%>">TO DO LIST</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -17,21 +17,33 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+      <% if logged_in? %>
         <li class="nav-item">
-          <a class="nav-link" href="<%=('/users/edit')%>">Edit Profile</a>
+          <a class="nav-link" href="<%=url('/users/edit')%>">Edit Profile</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%=url('/users/signout')%>">Log Out</a>
+        </li>
+        <%else%>
         <li class="nav-item">
           <a class="nav-link" href="<%=url('/users/new')%>">Sign up</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="<%=url('/users/signin')%>">Log Out</a>
-        
+          <a class="nav-link" href="<%=url('/users/signin')%>">Sign in</a>
         </li>
+        <%end%>
+        
       </ul>
     </div>
   </div>
 </nav><br>
 <body>
+<% unless flash[:success_message].nil?%>
+<div class="alert alert-success" role="alert">
+<%=flash[:success_message] unless flash[:success_message].nil?%>
+</div>
+<%end%>
+
   <%= yield %>
 </body>
 

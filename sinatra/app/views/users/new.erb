@@ -9,6 +9,14 @@
               <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
               <form method = "post" action = "/users/new">
+              <% unless flash[:error_messages].nil?%>
+              <%flash[:error_messages].each do |error_message|%>
+              <div class="alert alert-danger" role="alert">
+                  <%=error_message %>
+                </div>
+              <%end%>
+
+              <%end%>
 
                 <div class="form-outline mb-4">
                   <input name = 'name' type="text" id="form3Example1cg" class="form-control form-control-lg" />
